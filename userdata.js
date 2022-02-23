@@ -43,6 +43,7 @@ function printData(username, badges, points) {
     console.log(`${username} has ${badges} badges with ${points} points!`)
 }
 
-const users = ["chalkers", "alenaholligan", "larsgessner"]
+const users = process.argv.slice(2) //["chalkers", "alenaholligan", "larsgessner"]
 users.forEach(getProfile)
+
 
