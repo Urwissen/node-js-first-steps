@@ -36,20 +36,25 @@ function useHttps(url) {
     try {
         const request = https.get(url, (response) => {
             console.log("HTTPs Status:", response.statusCode)
-            let body = ""
-            response.on("data", data => {
-                body += data.toString();
-            })
-            
-            response.on("end", () => {
-                try {
-                    const user = JSON.parse(body)
-                    printData(user.name, user.badges.length, user.points.total)
-                } catch(error) {
-                    printError(useHttps, error)
-                }
-            });
-            
+            if (response.statusCode === 200) {
+                let body = ""
+                response.on("data", data => {
+                    body += data.toString();
+                })
+                
+                response.on("end", () => {
+                    try {
+                        const user = JSON.parse(body)
+                        printData(user.name, user.badges.length, user.points.total)
+                    } catch(error) {
+                        printError(useHttps, error)
+                    }
+                });
+            } else {
+                const message = (`Unable to find user ->INPUT<- ${response.statusCode}`)
+                const statusCodeError = new Error(message)
+                printError(useHttps, statusCodeError) 
+            }
             
         })
         
