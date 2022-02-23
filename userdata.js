@@ -7,7 +7,7 @@ function getProfile(username) {
     useHttps(url)
 }
 
-// Error Printer
+// Error Printer, shows the function-name and error, were the error was thrown
 function printError(nameOfFunction, error) {
     console.error(`Inside -> ${nameOfFunction.toString().split("{")[0]}<- ${error.message}`)
 }
