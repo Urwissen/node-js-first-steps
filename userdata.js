@@ -9,7 +9,7 @@ function getProfile(username) {
 
 // Error Printer
 function printError(nameOfFunction, error) {
-    console.error(`Inside -> ${nameOfFunction.toString().split("{")[0]}<- ${error}`)
+    console.error(`Inside -> ${nameOfFunction.toString().split("{")[0]}<- ${error.message}`)
 }
 
 
